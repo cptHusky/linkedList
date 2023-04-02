@@ -47,3 +47,10 @@ class DoublyLinkedList:
         while current_node is not None:
             print(current_node.data)
             current_node = current_node.next
+
+if __name__ == '__main__':
+    a = DoublyLinkedList()
+    a.append(1)
+    a.append(2)
+    a.prepend(3)
+    a.print_list()
