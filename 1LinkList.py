@@ -91,11 +91,33 @@ class LinkedList:
             current_node = current_node.next
             i += 1
 
-class GreatLinkedList(LinkedList):
+    
+class Comparison:
+
+    def __eq__(self, other):
+        return len(self) == len(other)
+
+    def __ne__(self, other):
+        return len(self) != len(other)
+
+    def __lt__(self, other):
+        return len(self) < len(other)
+
+    def __gt__(self, other):
+        return len(self) > len(other)
+
+    def __le__(self, other):
+        return len(self) <= len(other)
+
+    def __ge__(self, other):
+        return len(self) >= len(other)
+
+
+class GreatLinkedList(LinkedList, Comparison):
 ###
     def __getitem__(self, index):
         return self.get_node(index)
-    
+###    
     def __len__(self):
         i = 0
         current_node = self.head
@@ -103,20 +125,25 @@ class GreatLinkedList(LinkedList):
             current_node = current_node.next
             i += 1
         return i
-
-
     
 
 if __name__ == '__main__':
     a = GreatLinkedList()
     b = GreatLinkedList()
-    # a.prepend(5)
     a.append(1)
-    # a.append(2, 1)
-    # a.append(3, 2)
-    # a.append(4, 2)
-    # a.print_list()
-    # a.delete_node(1)
+    a.append(2, 1)
+    a.append(3, 2)
+    a.append(4, 2)
+    a.prepend(5)
+    a.print_list()
+    a.delete_node(1)
     a.print_list()
     print(len(a))
+    print(a == b)
+    print(a != b)
+    print(a < b)
     print(a > b)
+    print(a <= b)
+    print(a >= b)
+
+
