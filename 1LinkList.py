@@ -2,6 +2,7 @@ class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
+        self.length = 0
 
 class LinkedList:
     def __init__(self):
@@ -12,6 +13,7 @@ class LinkedList:
         return isinstance(arg, cls)
 
     def append(self, data, after=None):
+        self.length += 1
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
@@ -34,14 +36,16 @@ class LinkedList:
             raise ValueError('Node not found in list')
 
     def prepend(self, data):
+        self.length += 1
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
 
-    def delete_node(self, index=None, data=None):
-        if data is None and index is None:
+    def delete_node(self, index=None,):
+        self.length -= 1
+        if index is None:
             return
-        if index is not None:
+        else:
             if index == 0:
                 self.head = self.head.next
                 #? Нормально ли то, что я не удаляю явно хэд? Это будет утекающая память? Возможно, надо разобраться самому.
@@ -56,20 +60,6 @@ class LinkedList:
                 return
             else:
                 raise IndexError('Index out of range')
-        else:
-            if self.head is None:
-                return
-            if self.head.data == data:
-                self.head = self.head.next
-                #? Нормально ли то, что я не удаляю явно хэд? Это будет утекающая память? Возможно, надо разобраться самому.
-                return
-            current_node = self.head
-            while current_node.next is not None:
-                if current_node.next.data == data:
-                    current_node.next = current_node.next.next
-                    return
-                current_node = current_node.next
-            raise ValueError('Node not found in list')
 
 ###
     def get_node(self, index):
@@ -113,7 +103,7 @@ class Comparison:
         return len(self) >= len(other)
 
 
-class GreatLinkedList(LinkedList, Comparison):
+class GreatLinkedList(Comparison, LinkedList):
 ###
     def __getitem__(self, index):
         return self.get_node(index)
@@ -126,7 +116,10 @@ class GreatLinkedList(LinkedList, Comparison):
             i += 1
         return i
     
+    def find(self, data) -> int:
+        pass
 
+        
 if __name__ == '__main__':
     a = GreatLinkedList()
     b = GreatLinkedList()
