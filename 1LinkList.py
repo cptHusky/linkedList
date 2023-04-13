@@ -2,11 +2,26 @@ class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
-        self.length = 0
 
 class LinkedList:
+
+    index = 0
+
     def __init__(self):
         self.head = None
+        self.length = 0
+
+    def __iter__(self):
+        self.current = self.head
+        return self
+
+    def __next__(self):
+        if self.index < len(self):
+            node = self.current.data
+            self.current = node.next
+            return node
+        else:
+            raise StopIteration
 
     @classmethod
     def is_the_same_type(cls, arg: any) -> bool:
@@ -129,14 +144,14 @@ if __name__ == '__main__':
     a.append(4, 2)
     a.prepend(5)
     a.print_list()
-    a.delete_node(1)
-    a.print_list()
-    print(len(a))
+    # a.delete_node(1)
+    print()
+    # a.print_list()
+    print(next(a))
+    print()
     print(a == b)
     print(a != b)
     print(a < b)
     print(a > b)
     print(a <= b)
     print(a >= b)
-
-
