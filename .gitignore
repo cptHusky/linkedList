@@ -6,3 +6,6 @@ __pycache__/Tests.cpython-310-pytest-7.3.0.pyc
 .idea/vcs.xml
 .idea/inspectionProfiles/profiles_settings.xml
 .vscode/settings.json
+test.py
+__pycache__/LinkedList.cpython-311.pyc
+__pycache__/Tests.cpython-311-pytest-7.3.0.pyc

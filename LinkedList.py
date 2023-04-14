@@ -23,7 +23,7 @@ class LinkedList:
         else:
             raise StopIteration
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         current_node = self.head
         i = 0
         while current_node is not None and i < index:
@@ -76,6 +76,8 @@ class LinkedList:
         self.head = new_node
 
     def delete_node(self, index=None):
+        if len(self) == 0:
+            raise IndexError('Index out of range')
         if index is None:
             return
         else:
@@ -111,7 +113,6 @@ class Comparison:
         return len(self) == len(other)
 
     def __ne__(self, other):
-        print('a')
         return len(self) != len(other)
 
     def __lt__(self, other):
@@ -132,5 +133,11 @@ class GreatLinkedList(LinkedList, Comparison):
     def __init__(self):
         super().__init__()   
 
-    def find(self, data) -> int:
-        pass
+    def find(self, data=None) -> int:
+        if data is None:
+            return
+        for i in range(len(self)):
+            if self[i] == data:
+                return i
+        else:
+            raise ValueError('Element is not in the list')

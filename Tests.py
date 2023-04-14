@@ -79,18 +79,52 @@ def test_comparison():
     gll1 = GreatLinkedList()
     gll2 = GreatLinkedList()
     assert gll1 == gll2
+    assert not gll1 != gll2
+    assert gll1 >= gll2
+    assert gll1 <= gll2
+
     gll1.append(1)
+    assert gll1 >= gll2
+    assert not gll2 >= gll1
+    assert gll2 <= gll1
+    assert not gll1 <= gll2
+    assert gll1 > gll2
+    assert gll2 < gll1
+    assert gll1 != gll2
+    assert gll2 != gll1 
+
+    gll2.append(2)
+    assert gll1 == gll2 #1-2
+    assert not gll1 > gll2
+    assert not gll2 > gll1
+    assert gll1 >= gll2
+    assert gll2 >= gll1
+
+    gll1.append(3)
     assert gll1 != gll2
     assert gll1 > gll2
-    gll2.append(2)
-    assert gll1 < gll2
-    gll1.append(3)
-    assert gll1 <= gll2
-    gll2.append(4)
+    assert gll2 < gll1
     assert gll1 >= gll2
+    assert gll2 <= gll1
 
 def test_is_the_same_type():
     assert LinkedList.is_the_same_type(LinkedList())
     assert GreatLinkedList.is_the_same_type(GreatLinkedList())
-    assert not LinkedList().is_the_same_type(GreatLinkedList())
+    assert LinkedList().is_the_same_type(GreatLinkedList())
     assert not GreatLinkedList().is_the_same_type(LinkedList())
+
+def test_find():
+    gll = GreatLinkedList()
+    assert gll.find() == None
+    with pytest.raises(ValueError):
+        gll.find(1)
+    gll.append(1)
+    gll.append(2)
+    gll.append(3)
+    assert gll.find(1) == 0
+    assert gll.find(2) == 1
+    assert gll.find(3) == 2
+    with pytest.raises(ValueError):
+        gll.find(4)
+    gll.append(1)
+    assert gll.find(1) == 0
