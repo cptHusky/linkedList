@@ -11,7 +11,7 @@ class LinkedList:
         self.head = None
         self.length = 0
         
-    def __iter__(self):
+    def __iter__(self): #? Возвращает экземпляр класса, как это указать? Я где-то видел -> Iterator[self], это было бы верно?
         self.current = self.head
         return self
 
@@ -34,7 +34,7 @@ class LinkedList:
         else:
             raise IndexError('Index out of range')
 
-    def __len__(self):
+    def __len__(self) -> int:
         i = 0
         current_node = self.head
         while current_node is not None:
@@ -46,7 +46,7 @@ class LinkedList:
     def is_the_same_type(cls, arg: any) -> bool:
         return isinstance(arg, cls)
 
-    def append(self, data, after=None):
+    def append(self, data, after=None) -> None:
         self.length += 1
         new_node = Node(data)
         if self.head is None:
@@ -69,13 +69,13 @@ class LinkedList:
                 current_node = current_node.next
             raise ValueError('Node not found in list')
 
-    def prepend(self, data):
+    def prepend(self, data) -> None:
         self.length += 1
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
 
-    def delete_node(self, index=None):
+    def delete_node(self, index=None) -> None:
         if len(self) == 0:
             raise IndexError('Index out of range')
         if index is None:
@@ -97,7 +97,7 @@ class LinkedList:
             else:
                 raise IndexError('Index out of range')
 
-    def print_list(self):
+    def print_list(self) -> None:
         i = 0
         current_node = self.head
         while current_node is not None:
@@ -109,22 +109,22 @@ class LinkedList:
 
 class Comparison:
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return len(self) == len(other)
 
-    def __ne__(self, other):
+    def __ne__(self, other) -> bool:
         return len(self) != len(other)
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return len(self) < len(other)
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> bool:
         return len(self) > len(other)
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         return len(self) <= len(other)
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> bool:
         return len(self) >= len(other)
 
 
